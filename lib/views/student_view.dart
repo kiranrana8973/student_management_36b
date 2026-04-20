@@ -9,7 +9,7 @@ class StudentView extends StatefulWidget {
 }
 
 class _StudentViewState extends State<StudentView> {
-  late StudentModel studentModel;
+  StudentModel? studentModel;
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
   final ageController = TextEditingController();
@@ -81,11 +81,35 @@ class _StudentViewState extends State<StudentView> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         // Handle save action
+                        setState(() {
+                          studentModel = StudentModel(
+                            fName: fnameController.text,
+                            lName: lnameController.text,
+                            age: int.parse(ageController.text),
+                          );
+                        });
                       }
                     },
                     child: Text('Save'),
                   ),
                 ),
+                SizedBox(height: 16),
+
+                studentModel != null
+                    ? Text(
+                        'Saved Student: ${studentModel!.fName} ${studentModel!.lName}, Age: ${studentModel!.age}',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : Text(
+                        'No student saved',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ],
             ),
           ),
