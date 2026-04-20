@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_management_36b/model/student_model.dart';
+import 'package:student_management_36b/views/output_view.dart';
 
 class StudentView extends StatefulWidget {
   const StudentView({super.key});
@@ -88,6 +89,14 @@ class _StudentViewState extends State<StudentView> {
                             age: int.parse(ageController.text),
                           );
                         });
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                OutputView(studentModel: studentModel!),
+                          ),
+                        );
                       }
                     },
                     child: Text('Save'),
@@ -95,21 +104,21 @@ class _StudentViewState extends State<StudentView> {
                 ),
                 SizedBox(height: 16),
 
-                studentModel != null
-                    ? Text(
-                        'Saved Student: ${studentModel!.fName} ${studentModel!.lName}, Age: ${studentModel!.age}',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    : Text(
-                        'No student saved',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                // studentModel != null
+                //     ? Text(
+                //         'Saved Student: ${studentModel!.fName} ${studentModel!.lName}, Age: ${studentModel!.age}',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       )
+                //     : Text(
+                //         'No student saved',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
               ],
             ),
           ),
